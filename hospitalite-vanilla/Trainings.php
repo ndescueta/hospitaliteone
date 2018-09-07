@@ -359,8 +359,7 @@
                   <?php
                   include("connections.php");
 
-                  $fetch_events = mysqli_query($connections, "SELECT * from tblevent " );
-
+                  $fetch_events = mysqli_query($connections, "SELECT td.intEventId, DATEDIFF(datDateStart, NOW()) as status, strEventName, txtEventLocation, txtEventDesc, intEventCapacity, datPaymentDue, datDateStart, datDateEnd, timTimeStart, timTimeEnd FROM tblevent te JOIN tbldate td ON te.intEventId = td.intEventId ");
                   if (mysqli_num_rows($fetch_events) > 0 ){
                     $output = "
                     <table class='table'>
@@ -378,13 +377,14 @@
                       $eventid = $row["intEventId"];
                       $eventname = $row["strEventName"];
                       $eventdescription = $row["txtEventDesc"];
-                      $date = $row["datPaymentDue"];
+                      $eventdatestart = $row["datPaymentDue"];
+                      $eventstatus = $row["status"];
 
                       $output .= "
                       <tr class='event_row' data-id='$eventid'>
                       <td>$eventname</td>
-                      <td>$date</td>
-                      <td></td>
+                      <td>$eventdatestart</td>
+                      <td>In $eventstatus days</td>
                       <td><button type='button' class='btn btn-success btn_editEvent' id=$eventid data-id=$eventid data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
                       </tr>
                       ";
@@ -486,9 +486,10 @@
         <h4 class="modal-title">Edit Event</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
-      <form class="form-material" method="post">
+      <form class="form-material" method="post" name="editEvent">
         <div class="modal-body">
           <div class="row">
+            <input type="hidden" name="hidden_eventid" id="hidden_eventid">
             <div class="form-group col-md-12">
               <label for="edit_eventName">Event Name</label>
               <input type="text" class="form-control" name="edit_eventName" id="edit_eventName" >

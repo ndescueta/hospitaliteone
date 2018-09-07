@@ -86,20 +86,55 @@ $(document).ready(function(){
     });
   });
 
+  //when edit event modal is shown
   $('#modal_editEvent').on('show.bs.modal', function(e){
     var eventid = $(e.relatedTarget).data('id');
-
+    console.log(eventid);
     $.ajax({
       type: "POST",
       url: "fetch_eventdetails.php",
       data: "eventid=" + eventid,
       dataType: "json",
       success: function(data){
+        $('#hidden_eventid').val(data.intEventId);
         $('#edit_eventName').val(data.strEventName);
         $('#edit_eventLocation').val(data.txtEventLocation);
+        $('#edit_eventDateStart').val(data.datDateStart);
+        $('#edit_eventDateEnd').val(data.datDateEnd);
+        $('#edit_eventTimeStart').val(data.timTimeStart);
+        $('#edit_eventTimeEnd').val(data.timTimeEnd);
         $('#edit_eventDescription').val(data.txtEventDesc);
         $('#edit_eventCapacity').val(data.intEventCapacity);
         $('#edit_eventPaymentDue').val(data.datPaymentDue);
+      }
+    });
+  });
+
+  //save edited event
+  $("form[name='editEvent']").on("submit", function(e){
+    e.preventDefault();
+    var formdata = $("form[name='editEvent']").serialize();
+    console.log(formdata);
+
+    $.ajax({
+      method: "POST",
+      url: "save_editedevent.php",
+      data: {formdata,formdata},
+      success: function(data){
+        if (data == '1'){
+          swal({
+            title: "",
+            text: "Edit successful!",
+            icon: "success",
+            buttons:{text:"Okay"}
+          })
+          .then((willApprove) => {
+            if (willApprove) {
+              $('#modal_editEvent').modal('hide');
+              window.location.href = "Trainings.php";
+            }
+          });
+        }
       }
     });
   });
