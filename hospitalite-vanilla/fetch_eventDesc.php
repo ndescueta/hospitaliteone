@@ -22,9 +22,10 @@ if($_POST['rowid']){
 
             $output .= "
             <h3>$eventname</h3>
-            $eventlocation.<br> FROM $eventdatestart TO $eventdateend. FROM  $eventtimestart TO $eventtimeend Payments are due on $eventpaymentdue only.
+            $eventlocation.<br> 
+            <small>FROM $eventdatestart TO $eventdateend. FROM  $eventtimestart TO $eventtimeend Payments are due on $eventpaymentdue only.</small>
             <br>
-            <div class='mt-5'><h3>$eventdescription<h3></div>
+            <div class='mt-5'><p>$eventdescription<p></div>
             ";
         }
         $output .= "</table>";
