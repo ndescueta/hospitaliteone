@@ -86,11 +86,22 @@ $(document).ready(function(){
     });
   });
 
-  $('.btn_editEvent').click(function(){
-    var eventid = $(this).attr("data-id");
-    console.log(eventid);
+  $('#modal_editEvent').on('show.bs.modal', function(e){
+    var eventid = $(e.relatedTarget).data('id');
 
-    
+    $.ajax({
+      type: "POST",
+      url: "fetch_eventdetails.php",
+      data: "eventid=" + eventid,
+      dataType: "json",
+      success: function(data){
+        $('#edit_eventName').val(data.strEventName);
+        $('#edit_eventLocation').val(data.txtEventLocation);
+        $('#edit_eventDescription').val(data.txtEventDesc);
+        $('#edit_eventCapacity').val(data.intEventCapacity);
+        $('#edit_eventPaymentDue').val(data.datPaymentDue);
+      }
+    });
   });
 });
 

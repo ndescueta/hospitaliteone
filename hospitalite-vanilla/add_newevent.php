@@ -19,9 +19,7 @@ if ($eventName && $eventLocation && $eventDateStart && $eventDateEnd && $eventTi
 
   if (mysqli_num_rows($fetch_events) <= 0 ){
     mysqli_query($connections, " INSERT INTO tblevent(strEventName, txtEventLocation, txtEventDesc, intEventCapacity, datPaymentDue) VALUES ('$eventName', '$eventLocation', '$eventDescription', $eventCapacity, '$eventPaymentDue') ");
-    mysqli_query($connections, " INSERT INTO tbldate(intEventId, datDateStart, datDateEnd, timTimeStart, timTimeEnd)
-    VALUES((SELECT intEventId FROM tblevent ORDER BY intEventId DESC LIMIT 1), $eventDateStart
-    , $eventDateEnd, $eventTimeStart, $eventTimeEnd) ");
+    mysqli_query($connections, " INSERT INTO tbldate(intEventId, datDateStart, datDateEnd, timTimeStart, timTimeEnd) VALUES((SELECT intEventId FROM tblevent ORDER BY intEventId DESC LIMIT 1), $eventDateStart, $eventDateEnd, $eventTimeStart, $eventTimeEnd) ");
     echo "1"; // if successful
   }
   elseif (mysqli_num_rows($fetch_events) > 0){

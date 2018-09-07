@@ -385,7 +385,7 @@
                       <td>$eventname</td>
                       <td>$date</td>
                       <td></td>
-                      <td><button type='button' class='btn btn-success btn_editEvent' data-id=$eventid data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
+                      <td><button type='button' class='btn btn-success btn_editEvent' id=$eventid data-id=$eventid data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
                       </tr>
                       ";
                     }
@@ -488,9 +488,47 @@
       </div>
       <form class="form-material" method="post">
         <div class="modal-body">
-
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label for="edit_eventName">Event Name</label>
+              <input type="text" class="form-control" name="edit_eventName" id="edit_eventName" >
+            </div>
+            <div class="form-group col-md-12">
+              <label for="edit_eventLocation">Event Location</label>
+              <input type="text" class="form-control" name="edit_eventLocation" id="edit_eventLocation">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="edit_eventDateStart">Event Date Start</label>
+              <input type="date" name="edit_eventDateStart" id="edit_eventDateStart" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="edit_eventDateEnd">Event Date End</label>
+              <input type="date" name="edit_eventDateEnd" id="edit_eventDateEnd" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="edit_eventTimeStart">Event Time Start</label>
+              <input type="time" name="edit_eventTimeStart" id="edit_eventTimeStart" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="edit_eventTimeEnd">Event Time Start</label>
+              <input type="time" name="edit_eventTimeEnd" id="edit_eventTimeEnd" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="edit_eventPaymentDue">Payment Due</label>
+              <input type="date" name="edit_eventPaymentDue" id="edit_eventPaymentDue" class="form-control col-md-6 ml-3">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="edit_eventDescription">Description</label>
+              <textarea class="form-control" name="edit_eventDescription" id="edit_eventDescription" rows="5" ></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="edit_eventCapacity">Capacity</label>
+              <input type="text" name="edit_eventCapacity" id="edit_eventCapacity" class="form-control col-md-6 ml-3">
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
         </form>
       </div>
     </div>
