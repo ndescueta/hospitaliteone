@@ -179,7 +179,7 @@
                   }
                   ?>
                 </div>
-                <!-- Add Directors -->
+                <!-- Add Hospital -->
                 <a href="#" data-toggle="modal" data-target="#add-new-hospital" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
                   <i class="ti-plus"></i> Add New Hospital
                 </a>
@@ -204,17 +204,17 @@
         <h4 class="modal-title">Add New Hospital</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
-      <form class='form-group form-material p-2' method="post" name="add-new-director">
+      <form class='form-group form-material p-2' method="post" name="add-new-hospital">
         <div class="modal-body">
           <div class="row">
 
             <div class="form-group col-md-12">
-              <label for="hospitalName">Hospital Name</label>
+              <label for="add_hospitalName">Hospital Name</label>
               <input type="text" class="form-control" name="add_hospitalName" id="add_hospitalName">
             </div>
 
             <div class="form-group col-md-12">
-              <label for="hospitalDirector">Hospital Director</label>
+              <label for="add_hospitalDirector">Hospital Director</label>
               <select class="s_ form-control" id="add_hospitalDirector" name="add_hospitalDirector">
                   <option value="">--SELECT--</option>
                   <?php
@@ -225,7 +225,7 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label for="hospitalAddress">Address</label>
+                <label for="add_hospitalAddress">Address</label>
                 <input type="text" class="form-control" name="add_hospitalAddress" id="add_hospitalAddress">
             </div>
 
@@ -243,22 +243,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Director Details</h4>
+        <h4 class="modal-title">Edit Hospital Details</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
-      <form class="form-material" method="post" name="editDirector">
+      <form class="form-material" method="post" name="editHospital">
         <div class="modal-body">
 
           <div class="row">
             <input type="hidden" name="hidden_hospitalid" id="hidden_hospitalid">
           
             <div class="form-group col-md-12">
-              <label for="hospitalName">Hospital Name</label>
+              <label for="edit_hospitalName">Hospital Name</label>
               <input type="text" class="form-control" name="edit_hospitalName" id="edit_hospitalName">
             </div>
 
             <div class="form-group col-md-12">
-              <label for="hospitalDirector">Hospital Director</label>
+              <label for="edit_hospitalDirector">Hospital Director</label>
               <select class="s_ form-control" id="edit_hospitalDirector" name="edit_hospitalDirector">
                   <option value="">--SELECT--</option>
                   <?php
@@ -269,7 +269,7 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label for="hospitalAddress">Address</label>
+                <label for="edit_hospitalAddress">Address</label>
                 <input type="text" class="form-control" name="edit_hospitalAddress" id="edit_hospitalAddress">
             </div>
 

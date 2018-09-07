@@ -16,42 +16,42 @@ $(document).ready(function(){
       $('input').val("");
     });
   
-    //add new director
-    $("form[name='add-new-director']").on("submit", function(e){
+    //add new hospital
+    $("form[name='add-new-hospital']").on("submit", function(e){
       e.preventDefault();
-      var formdata = $("form[name='add-new-director']").serialize();
+      var formdata = $("form[name='add-new-hospital']").serialize();
       console.log(formdata);
   
       $.ajax({
         method: "POST",
-        url: "add_newdirector.php",
+        url: "add_newhospital.php",
         data: {formdata,formdata},
         success: function (data){
           if (data == '1'){
             swal({
               title: "",
-              text: "Director Added!",
+              text: "Hospital Added!",
               icon: "success",
               buttons:{text:"Okay"},
             })
             .then((willApprove) => {
               if (willApprove) {
-                $('#add-new-director').modal('hide');
-                $('#add-new-directormodal .modal-body input').val("");
-                window.location.href = "Director.php";
+                $('#add-new-hospital').modal('hide');
+                $('#add-new-hospitalmodal .modal-body input').val("");
+                window.location.href = "hospital.php";
               }
             });
           }
           else if (data == '2'){
             swal({
               title: "",
-              text: "Director already exists!",
+              text: "Hospital already exists!",
               icon: "warning",
               buttons:{text:"Okay"},
             })
             .then((willApprove) => {
               if (willApprove){
-                window.location.href = "Director.php";
+                window.location.href = "hospital.php";
               }
             });
           }
@@ -74,33 +74,33 @@ $(document).ready(function(){
   
   
     //when edit director modal is shown
-    $('#modal_editDirector').on('show.bs.modal', function(e){
-      var directorid = $(e.relatedTarget).data('id');
-      console.log(directorid);
+    $('#modal_editHospital').on('show.bs.modal', function(e){
+      var hospitalid = $(e.relatedTarget).data('id');
+      
+      console.log(hospitalid);
       $.ajax({
         type: "POST",
-        url: "fetch_directordetails.php",
-        data: "directorid=" + directorid,
+        url: "fetch_hospitaldetails.php",
+        data: "hospitalid=" + hospitalid,
         dataType: "json",
         success: function(data){
-          $('#hidden_directorid').val(data.intDirectorId);
-          $('#edit_directorFirstName').val(data.strDirectorFirstName);
-          $('#edit_directorMiddleName').val(data.strDirectorMiddleName);
-          $('#edit_directorLastName').val(data.strDirectorLastName);
-          $('#edit_directorContact').val(data.strDirectorContact);
+          $('#hidden_hospitalid').val(data.intHospitalId);
+          $('#edit_hospitalName').val(data.strHospitalName);
+          $('#edit_hospitalDirector').val(data.intDirectorId);
+          $('#edit_hospitalAddress').val(data.strHospitalAddress);
         }
       });
     });
   
-    //save edited event
-    $("form[name='editDirector']").on("submit", function(e){
+    //save edited hospital
+    $("form[name='editHospital']").on("submit", function(e){
       e.preventDefault();
-      var formdata = $("form[name='editDirector']").serialize();
+      var formdata = $("form[name='editHospital']").serialize();
       console.log(formdata);
   
       $.ajax({
         method: "POST",
-        url: "save_editeddirector.php",
+        url: "save_editedhospital.php",
         data: {formdata,formdata},
         success: function(data){
           if (data == '1'){
@@ -112,8 +112,8 @@ $(document).ready(function(){
             })
             .then((willApprove) => {
               if (willApprove) {
-                $('#modal_editDirector').modal('hide');
-                window.location.href = "Director.php";
+                $('#modal_editHospital').modal('hide');
+                window.location.href = "hospital.php";
               }
             });
           }
