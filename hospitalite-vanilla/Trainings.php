@@ -27,6 +27,15 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style>
+  /* XL MODAL HACK */
+  @media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}
+  </style>
 </head>
 <body class="skin-megna fixed-layout">
 
@@ -405,8 +414,8 @@
         <!-- EVENT DESCRIPTION -->
         <div class="col-lg-6">
           <div class="card-body b-l calender-sidebar">
-            <h4 class="card-title m-t-10">Event Description</h4>
             <div class='text-center text-muted' id='eventDescCont'>
+            <br><br>
               <i class='fas fa-calendar-alt fa-5x'></i><br><br>
               <p>No Event Selected</p>
 
@@ -424,7 +433,7 @@
 <!-- modal declarations -->
 <!-- add event -->
 <div id="add-new-event" name="add-new-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addneweventlabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Add New Event</h4>
@@ -432,7 +441,9 @@
       </div>
       <form class='form-group form-material p-2' method="post" name="add-new-event">
         <div class="modal-body">
-          <div class="row">
+        <div class="row">
+        <div class="col-md-6">
+        <div class="row">
             <div class="form-group col-md-12">
               <label for="eventName">Event Name</label>
               <input type="text" class="form-control" name="eventName" id="eventName" >
@@ -457,7 +468,14 @@
               <label for="eventTimeEnd">Event Time Start</label>
               <input type="time" name="eventTimeEnd" id="eventTimeEnd" class="form-control">
             </div>
-            <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group col-md-12">
+              <label for="eventCapacity">Capacity</label>
+              <input type="text" name="eventCapacity" id="eventCapacity" class="form-control col-md-6 ml-3">
+            </div>
+            <div class="form-group col-md-12">
               <label for="eventPaymentDue">Payment Due</label>
               <input type="date" name="eventPaymentDue" id="eventPaymentDue" class="form-control col-md-6 ml-3">
             </div>
@@ -465,11 +483,9 @@
               <label for="eventDescription">Description</label>
               <textarea class="form-control" name="eventDescription" id="eventDescription" rows="5" ></textarea>
             </div>
-            <div class="form-group col-md-12">
-              <label for="eventCapacity">Capacity</label>
-              <input type="text" name="eventCapacity" id="eventCapacity" class="form-control col-md-6 ml-3">
-            </div>
-          </div>
+        </div>
+        </div>
+         
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
@@ -480,7 +496,7 @@
 </div>
 <!-- edit event -->
 <div id="modal_editEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editeventlabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Edit Event</h4>
@@ -488,7 +504,9 @@
       </div>
       <form class="form-material" method="post" name="editEvent">
         <div class="modal-body">
-          <div class="row">
+        <div class="row">
+        <div class="col-md-6">
+        <div class="row">
             <input type="hidden" name="hidden_eventid" id="hidden_eventid">
             <div class="form-group col-md-12">
               <label for="edit_eventName">Event Name</label>
@@ -514,7 +532,11 @@
               <label for="edit_eventTimeEnd">Event Time Start</label>
               <input type="time" name="edit_eventTimeEnd" id="edit_eventTimeEnd" class="form-control">
             </div>
-            <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-6">
+        <div class="row">
+        <div class="form-group">
               <label for="edit_eventPaymentDue">Payment Due</label>
               <input type="date" name="edit_eventPaymentDue" id="edit_eventPaymentDue" class="form-control col-md-6 ml-3">
             </div>
@@ -526,7 +548,9 @@
               <label for="edit_eventCapacity">Capacity</label>
               <input type="text" name="edit_eventCapacity" id="edit_eventCapacity" class="form-control col-md-6 ml-3">
             </div>
-          </div>
+        </div>
+        </div>
+        </div>         
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
