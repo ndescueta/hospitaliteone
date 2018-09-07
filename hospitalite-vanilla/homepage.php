@@ -236,7 +236,7 @@
 				<?php
 				include("connections.php");
 
-				$qryEvent = mysqli_query($connections,"SELECT * FROM tblevent");
+				$qryEvent = mysqli_query($connections,"SELECT td.intEventId, DATEDIFF(datDateStart, NOW()) as status, strEventName, txtEventLocation, txtEventDesc, intEventCapacity, datPaymentDue, datDateStart, datDateEnd, timTimeStart, timTimeEnd FROM tblevent te JOIN tbldate td ON te.intEventId = td.intEventId");
 
 				if(mysqli_num_rows($qryEvent) > 0){
 					while($row6 = mysqli_fetch_assoc($qryEvent)){
