@@ -23,11 +23,11 @@ if (mysqli_num_rows($fetch_events) > 0 ){
         $date = $row["datPaymentDue"];
 
         $output .= "
-        <tr class='tpose' data-id='$id'>
+        <tr class='event_row' data-id='$id'>
         <td>$eventname</td>
         <td>$date</td>
         <td></td>
-        <td><button type='button' class='btn btn-success'><i class='fas fa-edit'></i> Edit</button></td>
+        <td><button type='button' class='btn btn-success' data-id=$id><i class='fas fa-edit'></i> Edit</button></td>
         </tr>
         ";
     }
@@ -35,20 +35,20 @@ if (mysqli_num_rows($fetch_events) > 0 ){
     echo $output;
 }
 ?>
-<script>
-$(document).ready(function(){
-    $('.tpose').click(function(){
-        var rowid = $(this).attr("data-id");
-        // alert(rowid);
-        $.ajax({
-            method: "POST",
-            url: "fetch_eventDesc.php",
-            data: "rowid=" + rowid,
-            success: function (data){
-                $('#eventDescCont').removeClass();
-                $('#eventDescCont').html(data);
-            }
-        });
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.event_row').click(function(){
+      var rowid = $(this).attr("data-id");
+      // alert(rowid);
+      $.ajax({
+        method: "POST",
+        url: "fetch_eventDesc.php",
+        data: "rowid=" + rowid,
+        success: function (data){
+          $('#eventDescCont').removeClass();
+          $('#eventDescCont').html(data);
+        }
+      });
     });
-});
+  });
 </script>

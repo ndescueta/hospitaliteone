@@ -15,6 +15,8 @@
   <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
   <!--Toaster Popup message CSS -->
   <link href="../assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+  <!--alerts CSS -->
+  <link href="../assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
   <!-- Custom CSS -->
   <link href="dist/css/style.min.css" rel="stylesheet">
   <!-- Dashboard 1 Page CSS -->
@@ -353,7 +355,44 @@
             <div class="row">
               <div class="col-md-12">
                 <!-- events table -->
-                <div id="events" class="">
+                <div id="events">
+                  <?php
+                  include("connections.php");
+
+                  $fetch_events = mysqli_query($connections, "SELECT * from tblevent " );
+
+                  if (mysqli_num_rows($fetch_events) > 0 ){
+                    $output = "
+                    <table class='table'>
+                    <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                    ";
+
+                    while ($row = mysqli_fetch_assoc($fetch_events)) {
+                      $eventid = $row["intEventId"];
+                      $eventname = $row["strEventName"];
+                      $eventdescription = $row["txtEventDesc"];
+                      $date = $row["datPaymentDue"];
+
+                      $output .= "
+                      <tr class='event_row' data-id='$eventid'>
+                      <td>$eventname</td>
+                      <td>$date</td>
+                      <td></td>
+                      <td><button type='button' class='btn btn-success btn_editEvent' data-id=$eventid data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
+                      </tr>
+                      ";
+                    }
+                    $output .= "</table>";
+                    echo $output;
+                  }
+                  ?>
                 </div>
                 <!-- Add Events -->
                 <a href="#" data-toggle="modal" data-target="#add-new-event" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
@@ -383,6 +422,7 @@
 </footer>
 </div>
 <!-- modal declarations -->
+<!-- add event -->
 <div id="add-new-event" name="add-new-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addneweventlabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -438,6 +478,24 @@
     </div>
   </div>
 </div>
+<!-- edit event -->
+<div id="modal_editEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editeventlabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <form class="form-material" method="post">
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="../assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap popper Core JavaScript -->
 <script src="../assets/node_modules/popper/popper.min.js"></script>
@@ -448,6 +506,8 @@
 <script src="dist/js/waves.js"></script>
 <!--Menu sidebar -->
 <script src="dist/js/sidebarmenu.js"></script>
+<!-- Sweet-Alert  -->
+<script src="../assets/node_modules/sweetalert/sweetalert.min.js"></script>
 <!--Custom JavaScript -->
 <script src="dist/js/custom.min.js"></script>
 <!-- ============================================================== -->
