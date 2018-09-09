@@ -443,7 +443,6 @@
             <div class="col-md-6">
 
               <div class="row">
-<<<<<<< HEAD
                 <div id="services">
                   <?php
                   include("connections.php");
@@ -472,36 +471,6 @@
                       <td>$serviceName</td>
                       <td>$serviceDesc</td>
                       <td><button type='button' class='btn btn-success btn_editEvent' id=$serviceId data-id=$serviceId data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
-=======
-                <div id="events">
-                  <?php
-                  include("connections.php");
-
-                  $fetch_events = mysqli_query($connections, "SELECT TS.intServiceId, TS.strServiceName, TS.txtServiceDescription FROM tblservices AS TS JOIN tblhospital AS TH ON TH.intHospitalId = TS.intHospitalId
-                  GROUP BY TS.intServiceId");
-                  if (mysqli_num_rows($fetch_events) > 0 ){
-                    $output = "
-                    <table class='table'>
-                    <thead>
-                    <tr>
-                    <th>Service Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                    </tr>
-                    </thead>
-                    ";
-
-                    while ($row = mysqli_fetch_assoc($fetch_events)) {
-                      $srvId = $row["intServiceId"];
-                      $srvName = $row["strServiceName"];
-                      $srvDesc = $row["txtServiceDescription"];
-
-                      $output .= "
-                      <tr class='event_row' data-id='$srvId'>
-                      <td>$srvName</td>
-                      <td>$srvDesc</td>
-                      <td><button type='button' class='btn btn-success btn_editEvent' id=$srvId data-id=$srvId data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
->>>>>>> 50ff4cacd465c04828654ca95515b5409f1e0b62
                       </tr>
                       ";
                     }
@@ -511,41 +480,19 @@
                   ?>
                 </div>
                 <!-- Add Events -->
-<<<<<<< HEAD
                 <a href="#" id="<?php echo $hospitalId; ?>" name="addNewService" data-toggle="modal" data-target="#add-new-service" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
                   <i class="ti-plus"></i> Add New Services
                 </a>
                 </div>
-=======
-                <a href="#" data-toggle="modal" data-target="#add-new-service" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
-                  <i class="ti-plus"></i> Add New Services
-                </a>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="card-body b-l calender-sidebar">
-                  <div class='text-center text-muted' id='serviceDescCont'>
-                  <br><br>
-                    <i class='fas fa-calendar-alt fa-5x'></i><br><br>
-                    <p>No Services Selected</p>
-
-                  </div>
-                </div>
->>>>>>> 50ff4cacd465c04828654ca95515b5409f1e0b62
               </div>
             </div>
 
           </div>
-<<<<<<< HEAD
 
-        </div>
-        <div class="modal-footer">
-=======
 
         </div>
         <div class="modal-footer">
 
->>>>>>> 50ff4cacd465c04828654ca95515b5409f1e0b62
         </form>
       </div>
     </div>
@@ -560,20 +507,16 @@
         <h4 class="modal-title">Add New Service</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
-<<<<<<< HEAD
       <form class='form-group form-material p-2' method="post" name="add-new-service">
-=======
-      <form class='form-group form-material p-2' method="post" name="add-new-event">
->>>>>>> 50ff4cacd465c04828654ca95515b5409f1e0b62
+
         <div class="modal-body">
         <div class="row">
         <div class="col-md-6">
         <div class="row">
             <div class="form-group col-md-12">
-<<<<<<< HEAD
+
               <input type="hidden" name="hidden_hospitalId" id="hidden_hospitalId">
-=======
->>>>>>> 50ff4cacd465c04828654ca95515b5409f1e0b62
+
               <label for="serviceName">Service Name</label>
               <input type="text" class="form-control" name="serviceName" id="serviceName" >
             </div>
