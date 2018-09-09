@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +15,18 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('admin', function () {
-    return view('admin');
-});
+//DASHBOARD ROUTE
+Route::get('admin','AdminController@index');
 
-Route::get('websiteServices', function () {
-    return view('websiteServices');
-});
+//TRAININGS AND SEMINARS ROUTE
+Route::get('admin/trainings','AdminController@trainings');
+
+//ADMIN HOMEPAGE ROUTE
+Route::get('admin/homepage','AdminController@homepage');
+
+//ADMIN HOMEPAGE VIEW ROUTE
+Route::get('admin/homepageView','AdminController@homepageView');
+
+// Route::get('admin', function () {
+//     return view('admin');
+// });

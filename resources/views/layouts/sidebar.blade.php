@@ -4,7 +4,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"><span class="hide-menu">Niño Escueta</span></a>
+                        <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="{{ asset('assets/images/users/1.jpg')}}" alt="user-img" class="img-circle"><span class="hide-menu">Niño Escueta</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
                                 <li><a href="javascript:void(0)"><i class="ti-wallet"></i> My Balance</a></li>
@@ -14,16 +14,13 @@
                             </ul>
                         </li>
                         <li class="nav-small-cap">--- <b>MAINTENANCE</b></li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Website</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="websiteServices">Services</a></li>
-                                <li><a href="app-chat.html">Inquiries</a></li>
-                                <li><a href="app-ticket.html">Trainings and Seminars</a></li>
-                                <li><a href="app-contact.html">Members</a></li>
-                                <li><a href="app-contact2.html">News</a></li>
-                                <li><a href="app-contact-detail.html">Faqs</a></li>
-                            </ul>
-                        </li>
+                          <li> <a class="waves-effect waves-dark {{ Request::is('admin/homepage') ? 'active' : '' }}" href="{{ url('admin/homepage') }}" aria-expanded="false"><i class="ti-world"></i><span class="hide-menu">Homepage</span></a>
+                          <li> <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-heart"></i><span class="hide-menu">Services</span></a>
+                          <li> <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-thought"></i><span class="hide-menu">Inquiries</span></a>
+                          <li> <a class="waves-effect waves-dark {{ Request::is('admin/trainings') ? 'active' : '' }}" href="{{ url('admin/trainings') }}" aria-expanded="false"><i class="ti-agenda"></i><span class="hide-menu">Trainings and &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seminars</span></a>
+                          <li> <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-user"></i><span class="hide-menu">Members</span></a>
+                          <li> <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">News</span></a>
+                          <li> <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-help"></i><span class="hide-menu">Faqs</span></a>
                         <!-- <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-email"></i><span class="hide-menu">Inbox</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="app-email.html">Mailbox</a></li>

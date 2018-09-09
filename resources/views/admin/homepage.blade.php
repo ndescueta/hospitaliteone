@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('layouts.header')
+@include('layouts.reqScript')
 <body class="skin-megna fixed-layout">
 
     <!-- ============================================================== -->
@@ -22,15 +23,20 @@
         @include('layouts.sidebar')
         <div class="page-wrapper">
             <div class="container-fluid">
-            <!-- //////////////////////////////Content -->
-            d2 lalagay
+                <div class="row page-titles">
+                  <div class="col-md-5 align-self-center">
+                    <h4 class="text-themecolor">Homepage</h4>
+                  </div>
+                </div>
+                <!-- //////////////////////////////Content -->
+                <iframe src="/admin/homepageView" class="container-fluid" style="height: 500px; padding: 0;" >
+</iframe>
             </div>
         </div>
         <footer class="footer">
             @include('layouts.footer')
         </footer>
     </div>
-@include('layouts.reqScript')
 </body>
 
 </html>
