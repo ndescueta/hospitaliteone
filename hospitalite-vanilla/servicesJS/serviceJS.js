@@ -5,10 +5,6 @@ $(document).ready(function(){
     $('input').val("");
   });
 
-  $("addNewService").on("click", function(e){
-      var hospid = $(this).attr("id");
-      console.log(hospid);
-  });
   //add new service
 
   $("form[name='add-new-service']").on("submit", function(e){
@@ -81,25 +77,16 @@ $(document).ready(function(){
   });
 
   //when edit event modal is shown
-  $('#modal_editEvent').on('show.bs.modal', function(e){
-    var eventid = $(e.relatedTarget).data('id');
-    console.log(eventid)
+  $('#modal_editservices').on('show.bs.modal', function(e){
+    var hospId = $(e.relatedTarget).data('id');
+    console.log(hospId);
     $.ajax({
       type: "POST",
-      url: "fetch_eventdetails.php",
-      data: "eventid=" + eventid,
+      url: "serviceAction/fetchServices.php",
+      data: "hospId=" + hospId,
       dataType: "json",
       success: function(data){
-        $('#hidden_eventid').val(data.intEventId);
-        $('#edit_eventName').val(data.strEventName);
-        $('#edit_eventLocation').val(data.txtEventLocation);
-        $('#edit_eventDateStart').val(data.datDateStart);
-        $('#edit_eventDateEnd').val(data.datDateEnd);
-        $('#edit_eventTimeStart').val(data.timTimeStart);
-        $('#edit_eventTimeEnd').val(data.timTimeEnd);
-        $('#edit_eventDescription').val(data.txtEventDesc);
-        $('#edit_eventCapacity').val(data.intEventCapacity);
-        $('#edit_eventPaymentDue').val(data.datPaymentDue);
+        $('#trylangs').html(data);
       }
     });
   });

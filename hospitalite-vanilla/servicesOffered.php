@@ -368,49 +368,9 @@
                 <div id="hospitals">
                   <?php
                   include("connections.php");
-
-                  $fetch_services = mysqli_query($connections, "SELECT TH.intHospitalId, TH.strHospitalName FROM tblhospital AS TH JOIN tblservices AS TS ON TS.intHospitalId = TH.intHospitalId GROUP BY TS.intHospitalId");
-
-                  if (mysqli_num_rows($fetch_services) > 0 ){
-
-                      while ($row = mysqli_fetch_assoc($fetch_services)){
-
-                        $intID = $row["intHospitalId"];
-                        $strHospName = $row["strHospitalName"];
-
-                      ?>
-
-                         <button style="border-radius: 2px;
-                                        cursor: pointer;
-                                        line-height: 1.8;
-                                        color: black;
-                                        padding: 12px;
-                                        margin-bottom: 12px;
-                                        border: solid 1px #000;
-                                        transition: 0.05s;
-                                        font-size: 68%;
-                                        align-items: center;
-                                        justify-content: center;
-                                        text-align: center;"
-                                         type="button"
-                                        id=<?php echo $intID;?>
-                                        data-id=<?php echo $intID;?>
-                                        data-toggle='modal'
-                                        data-target='#edit-services'
-                                        >
-                                     <?php echo $strHospName;?>
-                         </button>
-
-
-
-                      <?php }
-                    // $output .= "</table>";
-                    // echo $output;
-                  }
+                  include("servicesAction/fetch_hospitals.php");
                   ?>
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -428,7 +388,7 @@
 <!-- modal declarations -->
 
 <!-- view-services modal -->
-<div id="edit-services" name="edit-services" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addneweventlabel" aria-hidden="true">
+<div id="view-services" name="view-services" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addneweventlabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -444,43 +404,10 @@
 
               <div class="row">
                 <div id="services">
-                  <?php
-                  include("connections.php");
 
-                  $fetch_events = mysqli_query($connections, "SELECT TS.intServiceId, TS.strServiceName, TS.txtServiceDescription, TS.intHospitalId FROM tblservices AS TS JOIN tblhospital AS TH ON TS.intHospitalId = TH.intHospitalId ");
-                  if (mysqli_num_rows($fetch_events) > 0 ){
-                    $output = "
-                    <table class='table'>
-                    <thead>
-                    <tr>
-                    <th>Service Name</th>
-                    <th>Service Description</th>
-                    <th>Action</th>
-                    </tr>
-                    </thead>
-                    ";
-
-                    while ($row = mysqli_fetch_assoc($fetch_events)) {
-                      $serviceId = $row["intServiceId"];
-                      $serviceName = $row["strServiceName"];
-                      $serviceDesc = $row["txtServiceDescription"];
-                      $hospitalId = $row["intHospitalId"];
-
-                      $output .= "
-                      <tr class='event_row' data-id='$serviceId'>
-                      <td>$serviceName</td>
-                      <td>$serviceDesc</td>
-                      <td><button type='button' class='btn btn-success btn_editEvent' id=$serviceId data-id=$serviceId data-toggle='modal' data-target='#modal_editEvent'><i class='fas fa-edit'></i> Edit</button></td>
-                      </tr>
-                      ";
-                    }
-                    $output .= "</table>";
-                    echo $output;
-                  }
-                  ?>
                 </div>
                 <!-- Add Events -->
-                <a href="#" id="<?php echo $hospitalId; ?>" name="addNewService" data-toggle="modal" data-target="#add-new-service" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
+                <a href="#" name="addNewService" data-toggle="modal" data-target="#add-new-service" class="btn m-t-10 btn-info btn-block waves-effect waves-light">
                   <i class="ti-plus"></i> Add New Services
                 </a>
                 </div>
@@ -514,8 +441,7 @@
         <div class="col-md-6">
         <div class="row">
             <div class="form-group col-md-12">
-
-              <input type="hidden" name="hidden_hospitalId" id="hidden_hospitalId">
+              <input type="hidden" name="hidden_hospitalId" id="">
 
               <label for="serviceName">Service Name</label>
               <input type="text" class="form-control" name="serviceName" id="serviceName" >
@@ -542,40 +468,23 @@
 </div>
 
 <!-- edit services modal-->
-<div id="modal_editEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editeventlabel" aria-hidden="true">
+<div id="modal_editservices" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editeventlabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Event</h4>
+        <h4 class="modal-title">Edit Services</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
-      <form class="form-material" method="post" name="editEvent">
         <div class="modal-body">
-        <div class="row">
-        <div class="col-md-6">
-        <div class="row">
-            <input type="hidden" name="hidden_eventid" id="hidden_eventid">
-            <div class="form-group col-md-12">
-              <label for="edit_serviceName">Service Name</label>
-              <input type="text" class="form-control" name="edit_serviceName" id="edit_serviceName" >
+          <div class="row">
+            <div class="col-md-6">
+              <div id="trylangs">
+              </div>
             </div>
-            <div class="form-group col-md-12">
-              <label for="edit_serviceDescription">Description</label>
-              <textarea class="form-control" name="edit_serviceDescription" id="edit_serviceDescription" rows="5" ></textarea>
-            </div>
-
           </div>
-        </div>
-        <div class="col-md-6">
-        <div class="row">
-
-        </div>
-        </div>
-        </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
-        </form>
       </div>
     </div>
   </div>
