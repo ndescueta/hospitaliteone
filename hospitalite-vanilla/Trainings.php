@@ -157,7 +157,7 @@
                       $eventid = $row["intEventId"];
                       $eventname = $row["strEventName"];
                       $eventdescription = $row["txtEventDesc"];
-                      $eventdatestart = $row["datPaymentDue"];
+                      $eventdatestart = $row["datDateStart"];
                       $eventstatus = $row["status"];
 
                       $output .= "
@@ -256,7 +256,7 @@
             </div>
         </div>
         </div>
-         
+
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
@@ -321,7 +321,7 @@
             </div>
         </div>
         </div>
-        </div>         
+        </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
